@@ -1,0 +1,19 @@
+apiVersion: flightctl.io/v1beta1
+kind: Fleet
+metadata:
+  name: warehouse
+spec:
+  selector:
+    matchLabels:
+      location: warehouse
+  template:
+    spec:
+      applications: []
+      config:
+      - inline:
+        - content: |-
+            export PS1="managed device: {{ .metadata.labels.alias }}\$ "
+
+          path: /etc/profile.d/managed-device.sh
+        name: ps1
+
